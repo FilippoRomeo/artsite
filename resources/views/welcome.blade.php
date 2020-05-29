@@ -65,6 +65,8 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            
+        <div id="hello"></div>
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -79,9 +81,11 @@
                 </div>
             @endif
 
-            <div id="example">
-            </div>
-            <script src="{{ asset('js/app.js')}}"></script>
+            <div id="example"></div>
+            <div id="helloo"></div>
+
+            
         </div>
     </body>
+    <script defer src="{{ asset('js/app.js')}}"></script>
 </html>
