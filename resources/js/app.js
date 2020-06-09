@@ -12,6 +12,5 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
-require('./components/helloo');
-require('./components/hello');
+require('./components/login');
+require('./components/swtich');
