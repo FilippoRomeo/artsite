@@ -13,8 +13,7 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
-                    You are a biatch!
+Hello
                 </div>
             </div>
         </div>
