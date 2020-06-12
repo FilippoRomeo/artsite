@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\userdata;
+use App\userdatas;
 
 
 class userdataController extends Controller
@@ -15,7 +15,7 @@ class userdataController extends Controller
      */
     public function index()
     {
-        $udata = userdata::latest()->paginate(5);
+        $udata = userdatas::latest()->paginate(5);
         return view('index', compact('udata'))
                   ->with('i', (request()->input('page',1) -1)*5);
     }
