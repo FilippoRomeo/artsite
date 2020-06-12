@@ -44,7 +44,7 @@ class userdataController extends Controller
             'link' => 'required'
           ]);
   
-          userdata::create($request->all());
+          userdatas::create($request->all());
           return redirect()->route('index')
                           ->with('success', 'new record successfully added');
     }
@@ -57,7 +57,7 @@ class userdataController extends Controller
      */
     public function show($id)
     {
-        $udata = userdata::find($id);
+        $udata = userdatas::find($id);
         return view('detail', compact('biodata'));        
     }
 
@@ -69,7 +69,7 @@ class userdataController extends Controller
      */
     public function edit($id)
     {
-        $udata = userdata::find($id);
+        $udata = userdatas::find($id);
         return view('edit', compact('udata'));
     }
 
@@ -87,7 +87,7 @@ class userdataController extends Controller
             'description' => 'required',
             'link' => 'required'
           ]);
-          $udata = userdata::find($id);
+          $udata = userdatas::find($id);
           $udata->namaSiswa = $request->get('title');
           $udata->alamatSiswa = $request->get('description');
           $udata->alamatSiswa = $request->get('link');
@@ -104,7 +104,7 @@ class userdataController extends Controller
      */
     public function destroy($id)
     {
-        $udata = userdata::find($id);
+        $udata = userdatas::find($id);
         $udata->delete();
         return redirect()->route('index')
                         ->with('success', 'Biodata siswa deleted successfully');
