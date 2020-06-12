@@ -49,6 +49,15 @@
         width: 75%;
     }
 
+    .search_box {
+        background-color: transparent;
+        color: black;
+        outline-offset: 0;
+        border: solid black 1px;
+        padding: 3px 10px;
+        width: 100%;
+    }
+
     .button_box {
         display: inline-block;
         margin: 2% 10% 2% 14%;
@@ -60,6 +69,7 @@
         border: 1px solid black;
     }
 
+    .search_box:hover,
     .button_box:hover {
         border: 3px solid black;
         color: black;
@@ -72,35 +82,71 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}" title="ArtSite">
-                    <svg height="50" width="50">
-                        <circle class="nav-polygon" cx="25" cy="25" r="12" />
-                    </svg>
-                </a>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item dropdown">
+                            <a class="navbar-brand dropdown-toggle" href="#" data-toggle="dropdown" title="ArtSite" v-pre>
+                                <svg height="50" width="50">
+                                    <circle class="nav-polygon" cx="25" cy="25" r="12" />
+                                </svg>
+                            </a>
+
+
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/') }}">
+                                    Home
+                                </a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ url('/') }}">
+                                    Home
+                                </a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ url('/') }}">
+                                    Home
+                                </a>
+
+                            </div>
+
+
+
+                        </li>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">
+                                Sup
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                        </li>
+
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto justify-content-center">
-                        <input class="input_box">
+                    <ul class="navbar-nav mx-auto">
+
+                        <li class="nav-item">
+                            <input placeholder="Search" class="search_box">
+                        </li>
+
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-
                             <button class="btn" data-toggle="modal" data-target="#login_dialog">
+                                Log in
                                 <svg height="50" width="50">
                                     <polygon class="nav-polygon" points="40,10 10,40 40,40" />
                                 </svg>
                             </button>
+
                         </li>
                         @else
                         <li class="nav-item dropdown">
@@ -130,9 +176,11 @@
             @yield('content')
         </main>
     </div>
+
     <div class="modal hide fade" id="signin_dialog">
         <div class="modal-dialog">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h4 class="modal-title">{{ __('Register') }}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -141,16 +189,41 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
-                            <input placeholder="Name" id="name" type="text" class="form-control input_box @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            <input placeholder="E-Mail Address" id="email" type="email" class="form-control input_box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                            <input placeholder="Password" id="password" type="password" class="form-control input_box @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                            <input placeholder="Confirm Password" id="password-confirm" type="password" class="form-control input_box" name="password_confirmation" required autocomplete="new-password">
 
-                            @error('name', 'email', 'password')
-                            <span class="invalid-feedback" role="alert">
+                            <!-- name input -->
+                            <input placeholder="Name" id="name" type="text" class="form-control input_box @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert" style="text-align:center">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+
+                            <!-- email input -->
+                            <input placeholder="E-Mail Address" id="email" type="email" class="form-control input_box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert" style="text-align:center">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
+                            <!-- password input -->
+                            <input placeholder="Password" id="password-signin" type="password" class="form-control input_box @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input placeholder="Confirm Password" id="signin-password-confirm" type="password" class="form-control input_box" name="password_confirmation" required autocomplete="new-password">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert" style="text-align:center">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
+                            @if (count($errors) > 0)
+                            <script>
+                                $(document).ready(function() {
+                                    $('#signin_dialog').modal('show');
+                                    $('#login_dialog').modal('hide');
+                                });
+                            </script>
+                            @endif
+
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-2">
@@ -162,13 +235,13 @@
                 </div>
 
             </div>
-            </form>
         </div>
     </div>
 
     <div class="modal hide fade" id="login_dialog">
         <div class="modal-dialog">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h4 class="modal-title">{{ __('Login') }}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -178,9 +251,14 @@
                         @csrf
                         <div class="form-group">
                             <input placeholder="E-Mail Address" id="email" type="email" class="form-control input_box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert" style="text-align:center">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             <input placeholder="Password" id="password" type="password" class="form-control input_box @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                            @error('email', 'password')
-                            <span class="invalid-feedback" role="alert">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert" style="text-align:center">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -191,6 +269,14 @@
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Recover Password') }}
                             </a>
+                            @endif
+
+                            @if (count($errors) > 0)
+                            <script>
+                                $(document).ready(function() {
+                                    $('#login_dialog').modal('show');
+                                });
+                            </script>
                             @endif
                         </div>
                         <div class="form-group">
@@ -203,6 +289,7 @@
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
