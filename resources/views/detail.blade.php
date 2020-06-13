@@ -10,16 +10,16 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <strong>Nama Siswa : </strong> {{$userdata->name}}
+          <strong>Nama Siswa : </strong> {{$udata->name}}
         </div>
       </div>
       <div class="col-md-12">
         <div class="form-group">
-          <strong>Alamat Siswa : </strong> {{$userdata->description}}
+          <strong>Alamat Siswa : </strong> {{$udata->description}}
         </div>
       </div>
       <div class="col-md-12">
-        <a href="{{route('crud.index')}}" class="btn btn-sm btn-success">Back</a>
+        <a href="{{route('index')}}" class="btn btn-sm btn-success">Back</a>
       </div>
     </div>
   </div>

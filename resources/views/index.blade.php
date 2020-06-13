@@ -7,7 +7,7 @@
             <h3>List title</h3>
         </div>
         <div class="col-sm-2">
-            <a class="btn btn-sm btn-success" href="{{ route('create') }}">Create New title</a>
+            <a class="btn btn-sm btn-success" href="{{ route('views.create') }}">Create New title</a>
         </div>
     </div>
 
@@ -32,9 +32,9 @@
             <td>{{$userdata->description}}</td>
             <td><img src=`{{$userdata->link}}` alt=`{{$userdata->title}}` /></td>
             <td>
-                <form action="{{ route('destroy', $userdata->id) }}" method="post">
-                    <a class="btn btn-sm btn-success" href="{{route('show',$userdata->id)}}">Show</a>
-                    <a class="btn btn-sm btn-warning" href="{{route('edit',$userdata->id)}}">Edit</a>
+                <form action="{{ route('views.destroy', $userdata->id) }}" method="post">
+                    <a class="btn btn-sm btn-success" href="{{route('views.show',$userdata->id)}}">Show</a>
+                    <a class="btn btn-sm btn-warning" href="{{route('views.edit',$userdata->id)}}">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>

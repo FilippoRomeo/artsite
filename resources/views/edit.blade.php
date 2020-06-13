@@ -18,21 +18,21 @@
       </div>
     @endif
 
-    <form action="{{route('update',$userdata->id)}}" method="post">
+    <form action="{{route('update',$udata->id)}}" method="post">
       @csrf
       @method('PUT')
       <div class="row">
         <div class="col-md-12">
           <strong>Nama Siswa :</strong>
-          <input type="text" name="name" class="form-control" value="{{$userdata->title}}">
+          <input type="text" name="name" class="form-control" value="{{$udata->title}}">
         </div>
         <div class="col-md-12">
           <strong>Alamat Siswa :</strong>
-          <textarea class="form-control" name="description" rows="8" cols="80">{{$userdata->description}}</textarea>
+          <textarea class="form-control" name="description" rows="8" cols="80">{{$udata->description}}</textarea>
         </div>
         <div class="col-md-12">
           <strong>Alamat Siswa :</strong>
-          <textarea class="form-control" name="description" rows="8" cols="80">{{$userdata->link}}</textarea>
+          <textarea class="form-control" name="description" rows="8" cols="80">{{$udata->link}}</textarea>
         </div>
 
         <div class="col-md-12">

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\userdatas;
 
-
 class userdataController extends Controller
 {
     /**
@@ -58,7 +57,7 @@ class userdataController extends Controller
     public function show($id)
     {
         $udata = userdatas::find($id);
-        return view('detail', compact('biodata'));        
+        return view('detail', compact('udata'));        
     }
 
     /**
@@ -106,7 +105,7 @@ class userdataController extends Controller
     {
         $udata = userdatas::find($id);
         $udata->delete();
-        return redirect()->route('index')
+        return redirect()->route('views.index')
                         ->with('success', 'Biodata siswa deleted successfully');
     }
 }
