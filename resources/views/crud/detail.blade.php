@@ -10,12 +10,17 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <strong>Nama Siswa : </strong> {{$udata->title}}
+        <strong>Title : </strong> {{$udata->title}}
       </div>
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <strong>Alamat Siswa : </strong> {{$udata->description}}
+        <strong>Description : </strong> {{$udata->description}}
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <strong>Image : </strong> {{$udata->link}}
       </div>
     </div>
     <div class="col-md-12">

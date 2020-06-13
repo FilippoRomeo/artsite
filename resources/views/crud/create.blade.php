@@ -26,11 +26,11 @@
           <input type="text" name="title" class="form-control" placeholder="Title">
         </div>
         <div class="col-md-12">
-          <strong>Alamat Siswa :</strong>
+          <strong>Description: </strong>
           <textarea class="form-control" name="description" placeholder="Description" name="description" rows="8" cols="80"></textarea>
         </div>
         <div class="col-md-12">
-          <strong>Link:</strong>
+          <strong>Image :</strong>
           <textarea class="form-control" name="link" placeholder="Link" name="description" rows="8" cols="80"></textarea>
         </div>
         

@@ -23,15 +23,15 @@
       @method('PUT')
       <div class="row">
         <div class="col-md-12">
-          <strong>Nama Siswa :</strong>
+          <strong>Title:</strong>
           <input type="text" name="title" class="form-control" value="{{$udata->title}}">
         </div>
         <div class="col-md-12">
-          <strong>Alamat Siswa :</strong>
+          <strong>Description :</strong>
           <textarea class="form-control" name="description" rows="8" cols="80">{{$udata->description}}</textarea>
         </div>
         <div class="col-md-12">
-          <strong>Alamat Siswa :</strong>
+          <strong>Image :</strong>
           <textarea class="form-control" name="link" rows="4" cols="80">{{$udata->link}}</textarea>
         </div>
 

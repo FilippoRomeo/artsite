@@ -72,11 +72,15 @@
     .search_box:hover,
     .button_box:hover {
         border: 3px solid black;
-        color: black;
+        color: white;
         text-decoration: none;
 
     }
 </style>
+
+
+@include('modal/signin_modal')
+@include('modal/login_modal')
 
 <body>
     <div id="app">
@@ -97,16 +101,34 @@
 
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('/') }}">
-                                    Home
+
+                                <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
+                                    About
                                 </a>
                                 <hr>
-                                <a class="dropdown-item" href="{{ url('/') }}">
-                                    Home
+                                <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
+                                    Category
                                 </a>
                                 <hr>
-                                <a class="dropdown-item" href="{{ url('/') }}">
-                                    Home
+                                <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
+                                    Dark Mode
+                                </a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
+                                    History
+                                </a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
+                                    Help
+                                </a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
+                                    Maps
+                                </a>
+                                <hr>
+
+                                <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
+                                    FAQ
                                 </a>
 
                             </div>
@@ -157,15 +179,19 @@
                                 </svg>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/">
+                                <a class="dropdown-item" href="/" style="text-align: center;">
                                     Home
-                                </a>   
+                                </a>
                                 <hr>
-                            <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                <a class="dropdown-item" href="{{ route('profile.index') }}" style="text-align: center;">
                                     Profile
                                 </a>
                                 <hr>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('profile.create') }}" style="text-align: center;">
+                                    Upload
+                                </a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ route('logout') }}" style="text-align: center;" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
@@ -185,122 +211,7 @@
         </main>
     </div>
 
-    <div class="modal hide fade" id="signin_dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">{{ __('Register') }}</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group row">
-
-                            <!-- name input -->
-                            <input placeholder="Name" id="name" type="text" class="form-control input_box @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            @error('name')
-                            <span class="invalid-feedback" role="alert" style="text-align:center">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-
-                            <!-- email input -->
-                            <input placeholder="E-Mail Address" id="email" type="email" class="form-control input_box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                            @error('email')
-                            <span class="invalid-feedback" role="alert" style="text-align:center">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-
-                            <!-- password input -->
-                            <input placeholder="Password" id="password-signin" type="password" class="form-control input_box @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                            <input placeholder="Confirm Password" id="signin-password-confirm" type="password" class="form-control input_box" name="password_confirmation" required autocomplete="new-password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert" style="text-align:center">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-
-                            @if (count($errors) > 0)
-                            <script>
-                                $(document).ready(function() {
-                                    $('#signin_dialog').modal('show');
-                                    $('#login_dialog').modal('hide');
-                                });
-                            </script>
-                            @endif
-
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-2">
-                                <button type="submit" class="button_box">{{ __('Register') }}</button>
-                                <button type="button" class="button_box" data-dismiss="modal" data-toggle="modal" data-target="#login_dialog">Log in</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal hide fade" id="login_dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">{{ __('Login') }}</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="form-group">
-                            <input placeholder="E-Mail Address" id="email" type="email" class="form-control input_box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            @error('email')
-                            <span class="invalid-feedback" role="alert" style="text-align:center">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                            <input placeholder="Password" id="password" type="password" class="form-control input_box @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert" style="text-align:center">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group text-center">
-                            @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Recover Password') }}
-                            </a>
-                            @endif
-
-                            @if (count($errors) > 0)
-                            <script>
-                                $(document).ready(function() {
-                                    $('#login_dialog').modal('show');
-                                });
-                            </script>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-2">
-                                    <button type="submit" class="button_box">{{ __('Login') }}</button>
-                                    <button class="button_box" data-toggle="modal" data-dismiss="modal" data-target="#signin_dialog" href="#signin_dialog">Sign in</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    @yield('scripts')
 
 </body>
 

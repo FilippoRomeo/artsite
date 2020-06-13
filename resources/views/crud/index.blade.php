@@ -17,22 +17,26 @@
     </div>
     @endif
 
+
     <table class="table table-hover table-sm">
+     
         <tr>
             <th width="50px"><b>No.</b></th>
-            <th width="300px">Nama Siswa</th>
-            <th>Alamat Siswa</th>
-            <th width="180px">Action</th>
+            <th width="300px">{{ auth()->user()->email }}</th>
+            <th>{{ auth()->user()->name }} </th>
+            <th>Profession </th>
+            <th width="180px">Work</th>
         </tr>
+   
 
-       
+
 
         @foreach ($udata as $userdata)
         <tr>
             <td><b>{{++$i}}.</b></td>
             <td>{{$userdata->title}}</td>
             <td>{{$userdata->description}}</td>
-            <td><img src="{{$userdata->link}}" alt="{{$userdata->title}}" width="500" height="600"/></td>
+            <td><img src="{{$userdata->link}}" alt="{{$userdata->title}}" width="500" height="600" /></td>
             <td>
                 <form action="{{ route('profile.destroy', $userdata->id) }}" method="post">
                     <a class="btn btn-sm btn-success" href="{{route('profile.show',$userdata->id)}}">Show</a>
