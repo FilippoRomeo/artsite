@@ -7,7 +7,7 @@
             <h3>List title</h3>
         </div>
         <div class="col-sm-2">
-            <a class="btn btn-sm btn-success" href="{{ route('views.create') }}">Create New title</a>
+            <a class="btn btn-sm btn-success" href="{{ route('profile.create') }}">Create New title</a>
         </div>
     </div>
 
@@ -25,16 +25,18 @@
             <th width="180px">Action</th>
         </tr>
 
+       
+
         @foreach ($udata as $userdata)
         <tr>
             <td><b>{{++$i}}.</b></td>
             <td>{{$userdata->title}}</td>
             <td>{{$userdata->description}}</td>
-            <td><img src=`{{$userdata->link}}` alt=`{{$userdata->title}}` /></td>
+            <td><img src="{{$userdata->link}}" alt="{{$userdata->title}}" width="500" height="600"/></td>
             <td>
-                <form action="{{ route('views.destroy', $userdata->id) }}" method="post">
-                    <a class="btn btn-sm btn-success" href="{{route('views.show',$userdata->id)}}">Show</a>
-                    <a class="btn btn-sm btn-warning" href="{{route('views.edit',$userdata->id)}}">Edit</a>
+                <form action="{{ route('profile.destroy', $userdata->id) }}" method="post">
+                    <a class="btn btn-sm btn-success" href="{{route('profile.show',$userdata->id)}}">Show</a>
+                    <a class="btn btn-sm btn-warning" href="{{route('profile.edit',$userdata->id)}}">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>

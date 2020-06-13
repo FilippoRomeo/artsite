@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <h3>Edit name</h3>
+        <h3>New name</h3>
       </div>
     </div>
 
@@ -18,28 +18,29 @@
       </div>
     @endif
 
-    <form action="{{route('update',$udata->id)}}" method="post">
+    <form action="{{route('profile.store')}}" method="post">
       @csrf
-      @method('PUT')
       <div class="row">
         <div class="col-md-12">
-          <strong>Nama Siswa :</strong>
-          <input type="text" name="name" class="form-control" value="{{$udata->title}}">
+          <strong>Title:</strong>
+          <input type="text" name="title" class="form-control" placeholder="Title">
         </div>
         <div class="col-md-12">
           <strong>Alamat Siswa :</strong>
-          <textarea class="form-control" name="description" rows="8" cols="80">{{$udata->description}}</textarea>
+          <textarea class="form-control" name="description" placeholder="Description" name="description" rows="8" cols="80"></textarea>
         </div>
         <div class="col-md-12">
-          <strong>Alamat Siswa :</strong>
-          <textarea class="form-control" name="description" rows="8" cols="80">{{$udata->link}}</textarea>
+          <strong>Link:</strong>
+          <textarea class="form-control" name="link" placeholder="Link" name="description" rows="8" cols="80"></textarea>
         </div>
+        
 
         <div class="col-md-12">
-          <a href="{{route('index')}}" class="btn btn-sm btn-success">Back</a>
+          <a href="{{route('profile.index')}}" class="btn btn-sm btn-success">Back</a>
           <button type="submit" class="btn btn-sm btn-primary">Submit</button>
         </div>
       </div>
     </form>
+
   </div>
 @endsection

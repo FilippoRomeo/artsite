@@ -15,7 +15,7 @@ class userdataController extends Controller
     public function index()
     {
         $udata = userdatas::latest()->paginate(5);
-        return view('index', compact('udata'))
+        return view('crud.index', compact('udata'))
                   ->with('i', (request()->input('page',1) -1)*5);
     }
 
@@ -26,7 +26,7 @@ class userdataController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('crud.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class userdataController extends Controller
           ]);
   
           userdatas::create($request->all());
-          return redirect()->route('index')
+          return redirect()->route('profile.index')
                           ->with('success', 'new record successfully added');
     }
 
@@ -69,7 +69,7 @@ class userdataController extends Controller
     public function edit($id)
     {
         $udata = userdatas::find($id);
-        return view('edit', compact('udata'));
+        return view('crud.edit', compact('udata'));
     }
 
     /**
@@ -87,11 +87,11 @@ class userdataController extends Controller
             'link' => 'required'
           ]);
           $udata = userdatas::find($id);
-          $udata->namaSiswa = $request->get('title');
-          $udata->alamatSiswa = $request->get('description');
-          $udata->alamatSiswa = $request->get('link');
+          $udata->title = $request->get('title');
+          $udata->description = $request->get('description');
+          $udata->link = $request->get('link');
           $udata->save();
-          return redirect()->route('index')
+          return redirect()->route('profile.index')
                           ->with('success', 'Yea updated successfully');
     }
 
@@ -105,7 +105,7 @@ class userdataController extends Controller
     {
         $udata = userdatas::find($id);
         $udata->delete();
-        return redirect()->route('views.index')
-                        ->with('success', 'Biodata siswa deleted successfully');
+        return redirect()->route('profile.index')
+                        ->with('success', 'The record was deleted successfully');
     }
 }
