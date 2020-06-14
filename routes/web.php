@@ -23,3 +23,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/profile','userdataController');
+
+//image upload
+
+Route::get('/images', 'ImageUploadController@getImages')->name('images');
+
+Route::post('/upload', 'ImageUploadController@postUpload')->name('uploadfile');

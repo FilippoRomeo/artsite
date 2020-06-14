@@ -30,7 +30,7 @@
           <textarea class="form-control" name="description" placeholder="Description" name="description" rows="8" cols="80"></textarea>
         </div>
         <div class="col-md-12">
-          <strong>Image :</strong>
+          <strong>Image: </strong>
           <textarea class="form-control" name="link" placeholder="Link" name="description" rows="8" cols="80"></textarea>
         </div>
         
