@@ -18,18 +18,31 @@ class ImageUploadController extends Controller
 
     public function postUpload(imageStorage $request)
     {
-        $path = Storage::disk('s3')->put('images/upload', $request->file);
-        $request->merge([
-            'size' => $request->file->getSize(),
-            'path' => $path
-        ]);
-        $this->image->create(
-            $request->only( 
-                'size', 'title', 'path', 'created_by', 'added_by', 
-                'size', 'description', 'location', 'manufacturing_period', 
-                'manufacturing_type', 'manufacturing_date')
+        if (!auth()->user()) {
+            return view('auth/login')->with('message', 'Please log in first.');
+        } else {
+            $path = Storage::disk('s3')->put('images/upload', $request->file);
+            $request->merge([
+                'size' => $request->file->getSize(),
+                'path' => $path
+            ]);
+            $this->image->create(
+                $request->only(
+                    'size',
+                    'title',
+                    'path',
+                    'created_by',
+                    'added_by',
+                    'size',
+                    'description',
+                    'location',
+                    'manufacturing_period',
+                    'manufacturing_type',
+                    'manufacturing_date'
+                )
             );
-        return back()->with('success', 'Image Successfully Saved');
+            return back()->with('success', 'Image Successfully Saved');
+        }
     }
 
     public function getImages()
@@ -43,11 +56,10 @@ class ImageUploadController extends Controller
     }
 
     public function getImage($id)
-    {   
+    {
         $image = DB::table('craft_work_pics')
             ->where('id', $id)
             ->get();
-            return view('viewImage')->with('image',$image);
+        return view('viewImage')->with('image', $image);
     }
-
 }
