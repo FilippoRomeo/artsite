@@ -2,9 +2,10 @@
 
 namespace App;
 
-use App\imageUpload;
+use App\craftWorkPic;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -37,13 +38,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($value)
+    public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = bcrypt($value);
+        $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
     }
 
+    
     public function images()
     {
-        return $this->hasMany(ImageUpload::class, 'auth_by')->latest();
+        return $this->hasMany(craftWorkPic::class, 'added_by')->latest();
     }
 }

@@ -1,51 +1,89 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="modal-header">
-    <h4 class="modal-title">{{ __('Login') }}</h4>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-</div>
-<div class="modal-body">
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-        <div class="form-group">
-            <input placeholder="E-Mail Address" id="email" type="email" class="form-control input_box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-            @error('email')
-            <span class="invalid-feedback" role="alert" style="text-align:center">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-            <input placeholder="Password" id="password" type="password" class="form-control input_box @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-            @error('password')
-            <span class="invalid-feedback" role="alert" style="text-align:center">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
 
-        <div class="form-group text-center">
-            @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">
-                {{ __('Recover Password') }}
-            </a>
-            @endif
+                <div class="card-body">
 
-            @if (count($errors) > 0)
-            <script>
-                $(document).ready(function() {
-                    $('#login_dialog').modal('show');
-                });
-            </script>
-            @endif
-        </div>
-        <div class="form-group">
-            <div class="form-group row mb-0">
-                <div class="col-md-8 offset-md-2">
-                    <button type="submit" class="button_box">{{ __('Login') }}</button>
-                    <button class="button_box" data-toggle="modal" data-dismiss="modal" data-target="#signin_dialog" href="#signin_dialog">Sign in</button>
+
+                    @if (!empty($message))
+                    <div class="alert alert-info">
+
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>×</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+
+                        {{ $message }}
+                    </div>
+                    @endif
+
+
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>@if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+                                <a class="btn btn-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+
+
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 @endsection

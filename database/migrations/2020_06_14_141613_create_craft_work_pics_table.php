@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImageUploadsTable extends Migration
+class CreateCraftWorkPicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,21 @@ class CreateImageUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_uploads', function (Blueprint $table) {
+        Schema::create('craft_work_pics', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
             $table->string('title');
+            $table->string('created_by');
+            $table->string('description');
+            $table->string('location');
+            $table->string('manufacturing_period');
+            $table->string('manufacturing_type');
+            $table->string('manufacturing_date');
+
+            $table->unsignedInteger('added_by');
+
             $table->string('path');
             $table->double('size', 8, 2)->default(0);
-            $table->unsignedInteger('auth_by');
             $table->timestamps();
         });
     }
@@ -30,6 +39,6 @@ class CreateImageUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_uploads');
+        Schema::dropIfExists('craft_work_pics');
     }
 }

@@ -30,15 +30,17 @@
                             {{ __('Recover Password') }}
                         </a>
                         @endif
-
-                        @if (count($errors) > 0)
+                     
+                        @if ( Route::current()->getName() != 'login' and Route::current()->getName() != 'register' and count($errors) > 0 )
                         <script>
                             $(document).ready(function() {
                                 $('#login_dialog').modal('show');
+                                $('#signin_dialog').modal('hide');
                             });
                         </script>
                         @endif
                     </div>
+                    
                     <div class="form-group">
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-2">
@@ -55,10 +57,3 @@
     </div>
 </div>
 
-@if (count($errors) > 0)
-<script>
-    $(document).ready(function() {
-        $('#login_dialog').modal('show');
-    });
-</script>
-@endif

@@ -24,8 +24,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/profile','userdataController');
 
-//image upload
+//view registered user image
 
 Route::get('/images', 'ImageUploadController@getImages')->name('images');
 
+//image upload
+
 Route::post('/upload', 'ImageUploadController@postUpload')->name('uploadfile');
+
+//view single image
+
+Route::get('/images/{id}', 'ImageUploadController@getImage')->name('image');
+
+Route::get('/home', 'HomeController@index')->name('home');

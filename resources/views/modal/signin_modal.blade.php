@@ -36,7 +36,7 @@
                         </span>
                         @enderror
 
-                        @if (count($errors) > 0)
+                        @if ( Route::current()->getName() != 'login' and Route::current()->getName() != 'register' and count($errors) > 0 )
                         <script>
                             $(document).ready(function() {
                                 $('#signin_dialog').modal('show');
@@ -59,11 +59,3 @@
         </div>
     </div>
 </div>
-
-@if (count($errors) > 0)
-<script>
-    $(document).ready(function() {
-        $('#signin_dialog').modal('show');
-    });
-</script>
-@endif
