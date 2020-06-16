@@ -54,7 +54,10 @@ class ImageUploadController extends Controller
         // $users = DB::table('craft_work_pics')
         //     ->get();
 
-            return view('welcome')->with('images', $image);
+        $imageInfo = DB::table('craft_work_pics')
+            ->get();        
+        return view('welcome', compact('imageInfo','image'))
+                  ->with('i', (request()->input('page',1) -1)*5);
     }
 
     public function getMyImages()

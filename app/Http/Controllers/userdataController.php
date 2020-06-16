@@ -15,7 +15,8 @@ class userdataController extends Controller
     public function index()
     {
         $udata = userdatas::latest()->paginate(5);
-        return view('crud.index', compact('udata'))
+        $images = auth()->user()->images;
+        return view('profile.index', compact('udata','images'))
                   ->with('i', (request()->input('page',1) -1)*5);
     }
 
@@ -26,7 +27,7 @@ class userdataController extends Controller
      */
     public function create()
     {
-        return view('crud.create');
+        return view('profile.create');
     }
 
     /**
@@ -69,7 +70,7 @@ class userdataController extends Controller
     public function edit($id)
     {
         $udata = userdatas::find($id);
-        return view('crud.edit', compact('udata'));
+        return view('profile.edit', compact('udata'));
     }
 
     /**

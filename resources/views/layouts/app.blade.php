@@ -109,6 +109,10 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
+                                    <b>Home</b>
+                                </a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
                                     About
                                 </a>
                                 <hr>

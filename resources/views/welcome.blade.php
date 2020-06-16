@@ -12,13 +12,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($images[0])}}" alt="First slide">
+                        <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($image[0])}}" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($images[1])}}" alt="Second slide">
+                        <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($image[1])}}" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($images[2])}}" alt="Third slide">
+                        <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($image[2])}}" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
@@ -47,11 +47,20 @@
                             <th>Work</th>
                             <th>Period</th>
                         </tr>
+
                         <tr>
-                            <td>Saturday</td>
+                            <td>
+                                <a href="#">
+                                    <div>
+                                        Saturday
+                                    </div>
+                                </a>
+                            </td>
                             <td>Thursday</td>
                             <td>Monday</td>
+
                         </tr>
+
                     </table>
 
                 </div>
@@ -59,20 +68,25 @@
         </div>
         <div class="col-md-6" style="width: 100vh; height: 95vh;">
             <div class="card">
-                <div class="card-header" style="text-align: center;"><b>Recent artwork</b></div>
+                <div class="card-header" style="text-align: center;"><b>Recent work uploaded</b></div>
                 <div class="card-body mx-auto" style="padding: 0">
 
                     <table class="table table-hover" style="width: 60vh;">
                         <tr>
                             <th>Title</th>
                             <th>Period</th>
-                            <th>Published</th>
+                            <th>Location</th>
                         </tr>
+                        @foreach ($imageInfo as $data)
                         <tr>
-                            <td>Saturday</td>
-                            <td>Thursday</td>
-                            <td>Monday</td>
+
+                            <td>
+                                <a href="/images/{{$data->id}}"> {{$data->title}} </a> </td>
+                            <td>{{$data->manufacturing_period}}</td>
+                            <td>{{$data->location}}</td>
+
                         </tr>
+                        @endforeach
                     </table>
 
                 </div>

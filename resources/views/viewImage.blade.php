@@ -4,7 +4,7 @@
 
 <div class="container">
     <?php $image = $image[0] ?>
-    <div class="container">
+    <div class="container" style="width: 120vh; height:100vh">
         <div class="row text-center">
             <div class="col-3">
                 <div class="card">
@@ -12,10 +12,10 @@
                         <h4><b>Info</b></h4>
                     </div>
                     <div class="card-body">
-                        <h6>Producer <b> {{$image->created_by}}</b></h6>
-                        <h6>Located in <b>{{$image->location}}</b></h6>
-                        <h6>Period <b>{{$image->manufacturing_period}}</b></h6>
-                        <h6>Date <b>{{$image->manufacturing_date}}</b></h6>
+                        <h6><b>Producer</b> {{$image->created_by}}</h6>
+                        <h6><b>Located in</b> {{$image->location}}</h6>
+                        <h6><b>Period</b> {{$image->manufacturing_period}}</h6>
+                        <h6><b>Date</b> {{$image->manufacturing_date}}</h6>
                     </div>
                 </div>
                 <div class="card" style="margin-top: 5%;">
@@ -23,10 +23,11 @@
                         <h4><b>Description</b></h4>
                     </div>
                     <div class="card-body">
-                        <td>{{$image->size}} KB</td>
-                        <td>{{$image->created_at}}</td>
-                        <td>{{$image->added_by}}</td>
-                        <td>{{$image->description }}</td>
+                        
+                        <h6><b>Producer</b> {{$image->size}}</h6>
+                        <h6><b>Located in</b> {{$image->created_at}}</h6>
+                        <h6><b>Period</b> {{$image->added_by}}</h6>
+                        <h6><b>Description</b> {{$image->description }}</h6>
                     </div>
                 </div>
             </div>
