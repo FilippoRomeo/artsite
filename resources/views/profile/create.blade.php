@@ -23,15 +23,15 @@
       <div class="row">
         <div class="col-md-12">
           <strong>Title:</strong>
-          <input type="text" name="title" class="form-control" placeholder="Title">
+          <input type="text" name="title" id="title" class="form-control" placeholder="Title">
         </div>
         <div class="col-md-12">
           <strong>Description: </strong>
-          <textarea class="form-control" name="description" placeholder="Description" name="description" rows="8" cols="80"></textarea>
+          <textarea class="form-control" name="description" id="description" placeholder="Description" name="description" rows="8" cols="80"></textarea>
         </div>
         <div class="col-md-12">
           <strong>Image: </strong>
-          <textarea class="form-control" name="link" placeholder="Link" name="description" rows="8" cols="80"></textarea>
+          <textarea class="form-control" name="link" id="link" placeholder="Link" name="description" rows="8" cols="80"></textarea>
         </div>
         
 

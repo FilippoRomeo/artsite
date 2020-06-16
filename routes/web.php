@@ -29,6 +29,10 @@ Route::get('/images', 'ImageUploadController@getMyImages')->name('images');
 
 Route::resource('/profile', 'userdataController');
 
+Route::resource('/profile', 'userdataController')->parameters([
+    'users' => 'id'
+]);
+
 //post upload
 
 Route::post('/upload', 'ImageUploadController@postUpload')->name('uploadfile');

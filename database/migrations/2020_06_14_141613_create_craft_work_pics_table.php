@@ -18,7 +18,7 @@ class CreateCraftWorkPicsTable extends Migration
             
             $table->string('title');
             $table->string('created_by');
-            $table->string('description');
+            $table->text('description');
             $table->string('location');
             $table->string('manufacturing_period');
             $table->string('manufacturing_type');
@@ -27,7 +27,7 @@ class CreateCraftWorkPicsTable extends Migration
             $table->unsignedInteger('added_by');
 
             $table->string('path');
-            $table->double('size', 8, 2)->default(0);
+            $table->string('size')->default(0);
             $table->timestamps();
         });
     }

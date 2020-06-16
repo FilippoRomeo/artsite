@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\userdatas;
 
@@ -16,8 +17,8 @@ class userdataController extends Controller
     {
         $udata = userdatas::latest()->paginate(5);
         $images = auth()->user()->images;
-        return view('profile.index', compact('udata','images'))
-                  ->with('i', (request()->input('page',1) -1)*5);
+        return view('profile.index', compact('udata', 'images'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -41,12 +42,20 @@ class userdataController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'link' => 'required'
-          ]);
-  
-          userdatas::create($request->all());
-          return redirect()->route('profile.index')
-                          ->with('success', 'new record successfully added');
+            'link' => 'required',
+        ]);
+
+        $userInputs = new userdatas;
+
+        $userInputs->title = $request->input('title');
+        $userInputs->description = $request->input('description');
+        $userInputs->link = $request->input('link');
+        $userInputs->user_id = Auth::id();
+
+        $userInputs->save();
+
+        return redirect()->route('profile.index')
+            ->with('success', 'new record successfully added');
     }
 
     /**
@@ -58,7 +67,7 @@ class userdataController extends Controller
     public function show($id)
     {
         $udata = userdatas::find($id);
-        return view('detail', compact('udata'));        
+        return view('profile.detail', compact('udata'));
     }
 
     /**
@@ -70,7 +79,12 @@ class userdataController extends Controller
     public function edit($id)
     {
         $udata = userdatas::find($id);
+        if(!$udata){
+            return redirect()->route('profile.index')
+            ->with('success', 'Yea updated successfully');
+        }else{
         return view('profile.edit', compact('udata'));
+        }
     }
 
     /**
@@ -86,14 +100,15 @@ class userdataController extends Controller
             'title' => 'required',
             'description' => 'required',
             'link' => 'required'
-          ]);
-          $udata = userdatas::find($id);
-          $udata->title = $request->get('title');
-          $udata->description = $request->get('description');
-          $udata->link = $request->get('link');
-          $udata->save();
-          return redirect()->route('profile.index')
-                          ->with('success', 'Yea updated successfully');
+        ]);
+        $udata = userdatas::find($id);
+        $udata->title = $request->get('title');
+        $udata->description = $request->get('description');
+        $udata->link = $request->get('link');
+        $udata->save();
+
+        return redirect()->route('profile.index')
+            ->with('success', 'Yea updated successfully');
     }
 
     /**
@@ -107,6 +122,6 @@ class userdataController extends Controller
         $udata = userdatas::find($id);
         $udata->delete();
         return redirect()->route('profile.index')
-                        ->with('success', 'The record was deleted successfully');
+            ->with('success', 'The record was deleted successfully');
     }
 }

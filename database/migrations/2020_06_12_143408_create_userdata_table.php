@@ -18,6 +18,7 @@ class CreateUserdataTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('link');
+            $table->text('user_id');
             $table->timestamps();
         });
     }

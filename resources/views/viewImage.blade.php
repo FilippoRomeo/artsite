@@ -4,7 +4,7 @@
 
 <div class="container">
     <?php $image = $image[0] ?>
-    <div class="container" style="width: 120vh; height:100vh">
+    <div class="container">
         <div class="row text-center">
             <div class="col-3">
                 <div class="card">
@@ -31,14 +31,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9 text-center my-auto">
+            <div class="col-9 text-center">
                 <div class="card card-block d-flex">
 
                     <div class="card-header">
                         <h3>{{$image->title}}</h3>
                     </div>
                     <div class="card-body">
-                        <img width="50%" height="50%" src="{{Storage::disk('s3')->url($image->path)}}">
+                        <img width="70%" height="70%" src="{{Storage::disk('s3')->url($image->path)}}">
                     </div>
                 </div>
             </div>
