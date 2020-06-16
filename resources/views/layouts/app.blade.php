@@ -76,6 +76,12 @@
         text-decoration: none;
 
     }
+
+    .carousel-control-next,
+    .carousel-control-prev,
+    .carousel-indicators {
+        filter: invert(100%);
+    }
 </style>
 
 
@@ -138,13 +144,6 @@
                         </li>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">
-                                Sup
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
                         </div>
                         </li>
 
@@ -220,8 +219,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script>
+<!-- <script>
     $('.modal').on('shown.bs.modal', function(e) {
         $("body").addClass("modal-open")
     });
-</script>
+</script> -->

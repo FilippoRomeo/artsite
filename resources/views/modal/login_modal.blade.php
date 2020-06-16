@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" id="loginForm">
                     @csrf
                     <div class="form-group">
                         <input placeholder="E-Mail Address" id="email" type="email" class="form-control input_box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -31,12 +31,13 @@
                         </a>
                         @endif
                      
-                        @if ( Route::current()->getName() != 'login' and Route::current()->getName() != 'register' and count($errors) > 0 )
+                        @if ( (Route::current()->getName() != 'login' and 'register') and count($errors) > 0 and !empty('loginForm') )
                         <script>
                             $(document).ready(function() {
                                 $('#login_dialog').modal('show');
                                 $('#signin_dialog').modal('hide');
                             });
+                            
                         </script>
                         @endif
                     </div>

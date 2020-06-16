@@ -12,42 +12,42 @@
                         @csrf
                         
                         <div class="form-group">
-                            <input type="file" name="file" id="">
+                            <input type="file" name="file" id="" multiple accept="image/*" require>
                             <span class="help-block text-danger">{{$errors->first('file')}}</span>
                         </div>
                         
                         <div class="form-group">
-                            <input placeholder="Title" type="text" name="title" id="title" class="form-control" />
+                            <input placeholder="Title" type="text" name="title" id="title" class="form-control" require/>
                             <span class="help-block text-danger">{{$errors->first('title')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Created by" type="text" name="created_by" id="created_by" class="form-control" />
+                            <input placeholder="Created by" type="text" name="created_by" id="created_by" class="form-control" require/>
                             <span class="help-block text-danger">{{$errors->first('created_by')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <textarea placeholder="Description" name="description" id="description" class="form-control"></textarea>
+                            <textarea placeholder="Description" name="description" id="description" class="form-control" require></textarea>
                             <span class="help-block text-danger">{{$errors->first('description')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Period" type="text" name="manufacturing_period" id="manufacturing_period" class="form-control" />
+                            <input placeholder="Period" type="text" name="manufacturing_period" id="manufacturing_period" class="form-control" require/>
                             <span class="help-block text-danger">{{$errors->first('manufacturing_period')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Location" type="text" name="location" id="location" class="form-control" />
+                            <input placeholder="Location" type="text" name="location" id="location" class="form-control" require/>
                             <span class="help-block text-danger">{{$errors->first('location')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Craft type" type="text" name="manufacturing_type" id="manufacturing_type" class="form-control" />
+                            <input placeholder="Craft type" type="text" name="manufacturing_type" id="manufacturing_type" class="form-control" require/>
                             <span class="help-block text-danger">{{$errors->first('manufacturing_type')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Created on dd/mm/yyyy" type="date" name="manufacturing_date" id="manufacturing_date" class="form-control"></textarea>
+                            <input placeholder="Created on dd/mm/yyyy" type="date" name="manufacturing_date" id="manufacturing_date" class="form-control" require></textarea>
                             <span class="help-block text-danger">{{$errors->first('manufacturing_date')}}</span>
                         </div>
 

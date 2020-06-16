@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-<?php print_r($images[0]) ?>
+    <?php print_r($images[0]) ?>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

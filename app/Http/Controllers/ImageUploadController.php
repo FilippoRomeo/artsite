@@ -6,6 +6,7 @@ use App\craftWorkPic;
 use App\Http\Requests\imageStorage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+
 use DB;
 
 class ImageUploadController extends Controller
@@ -45,7 +46,18 @@ class ImageUploadController extends Controller
         }
     }
 
+    //welcome page 
+
     public function getImages()
+    {
+        $image = Storage::disk('s3')->allFiles('images');
+        // $users = DB::table('craft_work_pics')
+        //     ->get();
+
+            return view('welcome')->with('images', $image);
+    }
+
+    public function getMyImages()
     {
         //check if user is logged in 
         if (!auth()->user()) {

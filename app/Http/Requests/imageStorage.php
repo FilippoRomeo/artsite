@@ -24,8 +24,14 @@ class imageStorage extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:250',
-            'file' => 'required|image|max:2000'
+            'title' => 'required|max:100',
+            'file' => 'required|image|max:2000',
+            'created_by' => 'required|max:250',
+            'description' => 'required|max:500',
+            'location' => 'required|max:250',
+            'manufacturing_period' => 'required|max:250',
+            'manufacturing_type' => 'required|max:250',
+            'manufacturing_date' => 'date|nullable'
         ];
     }
 }
