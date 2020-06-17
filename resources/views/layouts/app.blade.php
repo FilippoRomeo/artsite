@@ -190,7 +190,7 @@
                                     Profile
                                 </a>
                                 <hr>
-                                <a class="dropdown-item" href="{{ route('profile.create') }}" style="text-align: center;">
+                                <a class="dropdown-item" href="{{ route('home') }}" style="text-align: center;">
                                     Upload
                                 </a>
                                 <hr>

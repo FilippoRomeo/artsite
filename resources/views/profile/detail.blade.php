@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="col-md-12">
-      <a href="{{route('profile.index')}}" class="btn btn-sm btn-success">Back</a>
+      <a href="/" class="btn btn-sm btn-success">Back</a>
     </div>
   </div>
 </div>
