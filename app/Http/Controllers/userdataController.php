@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\userdatas;
+use App\UserData;
+use DB;
 
 class userdataController extends Controller
 {
@@ -15,10 +16,7 @@ class userdataController extends Controller
      */
     public function index()
     {
-        $udata = userdatas::latest()->paginate(5);
-        $images = auth()->user()->images;
-        return view('profile.index', compact('udata', 'images'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('profile.index');
     }
 
     /**
@@ -40,16 +38,20 @@ class userdataController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'link' => 'required',
+            'name' => 'required',
+            'from' => 'required',
+            'movement' => 'required',
+            'active_period' => 'required',
+            'bio' => 'required'
         ]);
 
-        $userInputs = new userdatas;
+        $userInputs = new UserData;
 
-        $userInputs->title = $request->input('title');
-        $userInputs->description = $request->input('description');
-        $userInputs->link = $request->input('link');
+        $userInputs->name = $request->input('name');
+        $userInputs->from = $request->input('from');
+        $userInputs->movement = $request->input('movement');
+        $userInputs->active_period = $request->input('active_period');
+        $userInputs->bio = $request->input('bio');
         $userInputs->user_id = Auth::id();
 
         $userInputs->save();
@@ -66,7 +68,7 @@ class userdataController extends Controller
      */
     public function show($id)
     {
-        $udata = userdatas::find($id);
+        $udata = UserData::find($id);
         return view('profile.detail', compact('udata'));
     }
 
@@ -78,12 +80,24 @@ class userdataController extends Controller
      */
     public function edit($id)
     {
-        $udata = userdatas::find($id);
-        if(!$udata){
+        $udata = UserData::find($id);
+
+        var_dump($udata->user_id, $udata->user_id === Auth::id(), Auth::id(), 'userDataController, handle permission');
+
+        // if (!$udata) {
+        //     return redirect()->route('profile.index')
+        //         ->with('success', 'Yea updated successfully');
+        // } elseif() {
+        //     return view('profile.edit', compact('udata'));
+        // }else{
+
+        // }
+
+        if (!$udata) {
             return redirect()->route('profile.index')
-            ->with('success', 'Yea updated successfully');
-        }else{
-        return view('profile.edit', compact('udata'));
+                ->with('success', 'Yea updated successfully');
+        } else {
+            return view('profile.edit', compact('udata'));
         }
     }
 
@@ -97,14 +111,20 @@ class userdataController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'link' => 'required'
+            'name' => 'required',
+            'from' => 'required',
+            'movement' => 'required',
+            'active_period' => 'required',
+            'bio' => 'required',
         ]);
-        $udata = userdatas::find($id);
-        $udata->title = $request->get('title');
-        $udata->description = $request->get('description');
-        $udata->link = $request->get('link');
+        
+
+        $udata = UserData::find($id);
+        $udata->name = $request->input('name');
+        $udata->from = $request->input('from');
+        $udata->movement = $request->input('movement');
+        $udata->active_period = $request->input('active_period');
+        $udata->bio = $request->input('bio');
         $udata->save();
 
         return redirect()->route('profile.index')
@@ -119,7 +139,7 @@ class userdataController extends Controller
      */
     public function destroy($id)
     {
-        $udata = userdatas::find($id);
+        $udata = UserData::find($id);
         $udata->delete();
         return redirect()->route('profile.index')
             ->with('success', 'The record was deleted successfully');

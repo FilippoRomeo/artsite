@@ -51,13 +51,12 @@ class ImageUploadController extends Controller
     public function getImages()
     {
         $image = Storage::disk('s3')->allFiles('images');
-        // $users = DB::table('craft_work_pics')
-        //     ->get();
-
+        $udata = DB::table('user_data')
+            ->get();
         $imageInfo = DB::table('craft_work_pics')
-            ->get();        
-        return view('welcome', compact('imageInfo','image'))
-                  ->with('i', (request()->input('page',1) -1)*5);
+            ->get();
+
+        return view('welcome', compact('imageInfo', 'image', 'udata'));
     }
 
     public function getMyImages()

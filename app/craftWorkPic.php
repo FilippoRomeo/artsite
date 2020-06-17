@@ -7,12 +7,10 @@ use Illuminate\Support\Facades\Storage;
 
 class craftWorkPic extends Model
 {
-     /* Fillable */
      protected $fillable = [
         'title', 'path', 'created_by', 'added_by', 'size', 'description', 'location', 'manufacturing_period', 'manufacturing_type', 'manufacturing_date'
     ];
     
-    /* @array $appends */
     public $appends = ['url', 'uploaded_time', 'size_in_kb'];
 
     public function getUrlAttribute()

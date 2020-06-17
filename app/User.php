@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(craftWorkPic::class, 'added_by')->latest();
     }
+
+    public function userData()
+    {
+        return $this->hasMany(UserData::class, 'user_id');
+    }
 }

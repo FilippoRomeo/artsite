@@ -8,19 +8,29 @@
     </div>
   </div>
   <div class="row">
+  
     <div class="col-md-12">
       <div class="form-group">
-        <strong>Title : </strong> {{$udata->title}}
+        <strong>Name : </strong> {{$udata->name}}
       </div>
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <strong>Description : </strong> {{$udata->description}}
+        <strong>Located in : </strong> {{$udata->from}}
       </div>
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <strong>Image : </strong> {{$udata->link}}
+        <strong>Movement : </strong> {{$udata->movement}}
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <strong>Started activity in: </strong> {{$udata->active_period}}
+      </div>
+    </div><div class="col-md-12">
+      <div class="form-group">
+        <strong>Small bio: </strong> {{$udata->bio}}
       </div>
     </div>
     <div class="col-md-12">
