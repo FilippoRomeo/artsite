@@ -45,8 +45,8 @@
                     <div class="form-group">
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-2">
-                                <button type="submit" class="button_box btn-primary">{{ __('Login') }}</button>
-                                <button class="button_box btn-secondary" data-toggle="modal" data-dismiss="modal" data-target="#signin_dialog" href="#signin_dialog">Sign in</button>
+                                <button type="submit" class="button_box btn-success">{{ __('Login') }}</button>
+                                <button class="button_box btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#signin_dialog" href="#signin_dialog">Sign in</button>
 
                             </div>
                         </div>

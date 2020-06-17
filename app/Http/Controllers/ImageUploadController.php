@@ -59,21 +59,36 @@ class ImageUploadController extends Controller
         return view('welcome', compact('imageInfo', 'image', 'udata'));
     }
 
-    public function getMyImages()
-    {
-        //check if user is logged in 
-        if (!auth()->user()) {
-            return view('auth/login')->with('message', 'Please log in first.');
-        } else {
-            return view('images')->with('images', auth()->user()->images);
-        }
-    }
+    // public function getMyImages()
+    // {
+    //     //check if user is logged in 
+    //     if (!auth()->user()) {
+    //         return view('auth/login')->with('message', 'Please log in first.');
+    //     } else {
+    //         return view('images')->with('images', auth()->user()->images);
+    //     }
+    // }
+
+    //View single image
 
     public function getImage($id)
     {
+
         $image = DB::table('craft_work_pics')
             ->where('id', $id)
             ->get();
-        return view('viewImage')->with('image', $image);
+
+        $user = DB::table('user_data')
+            ->where('user_id', $image[0]->added_by)
+            ->get();
+
+        return view('viewImage', compact('image', 'user'));
+    
     }
+
+
+    public function formUpload() {
+        return view('upload');
+    }
+
 }

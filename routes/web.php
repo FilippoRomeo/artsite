@@ -10,10 +10,6 @@ Route::get('/', 'ImageUploadController@getImages')->name('images');
 
 Route::get('/images/{id}', 'ImageUploadController@getImage')->name('image');
 
-//view user images
-
-Route::get('/images', 'ImageUploadController@getMyImages')->name('images');
-
 //crud profile
 
 Route::resource('/profile', 'userdataController');
@@ -22,6 +18,6 @@ Route::resource('/profile', 'userdataController');
 
 Route::post('/upload', 'ImageUploadController@postUpload')->name('uploadfile');
 
-//form image upload
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/upload', 'ImageUploadController@formUpload');

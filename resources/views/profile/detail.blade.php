@@ -26,7 +26,7 @@
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <strong>Started activity in: </strong> {{$udata->active_period}}
+        <strong>Since: </strong> {{$udata->active_period}}
       </div>
     </div><div class="col-md-12">
       <div class="form-group">

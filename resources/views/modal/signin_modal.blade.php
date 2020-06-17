@@ -48,8 +48,8 @@
                     </div>
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-2">
-                            <button type="submit" class="button_box btn-primary">{{ __('Register') }}</button>
-                            <button type="button" class="button_box btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#login_dialog">Log in</button>
+                            <button type="submit" class="button_box btn-success">{{ __('Register') }}</button>
+                            <button type="button" class="button_box btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#login_dialog">Log in</button>
 
                         </div>
                     </div>

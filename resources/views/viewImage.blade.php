@@ -7,12 +7,16 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-3">
-                <div class="card">
+            <div class="col-sm-12">
+                    <a href="/" class="btn btn-sm btn-primary inline-block">Home</a>
+                </div>
+                <div class="card" style="margin-top: 5%;">
                     <div class="card-header">
                         <h4><b>Info</b></h4>
                     </div>
+                    
                     <div class="card-body">
-                        <h6><b>Producer</b> {{$image->created_by}}</h6>
+                        <h6><b>Created by</b><a href="../profile/{{$user[0]->id}}"> {{$user[0]->name}}</a></h6>
                         <h6><b>Located in</b> {{$image->location}}</h6>
                         <h6><b>Period</b> {{$image->manufacturing_period}}</h6>
                         <h6><b>Date</b> {{$image->manufacturing_date}}</h6>
@@ -24,10 +28,7 @@
                     </div>
                     <div class="card-body">
                         
-                        <h6><b>Producer</b> {{$image->size}}</h6>
-                        <h6><b>Located in</b> {{$image->created_at}}</h6>
-                        <h6><b>Period</b> {{$image->added_by}}</h6>
-                        <h6><b>Description</b> {{$image->description }}</h6>
+                         {{$image->description }}
                     </div>
                 </div>
             </div>
@@ -38,7 +39,7 @@
                         <h3>{{$image->title}}</h3>
                     </div>
                     <div class="card-body">
-                        <img width="70%" height="70%" src="{{Storage::disk('s3')->url($image->path)}}">
+                        <img width="100%" height="100%" src="{{Storage::disk('s3')->url($image->path)}}">
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@
 
   @if ($errors->any())
   <div class="alert alert-danger">
-    <strong>Whoops! </strong> there where some problems with your input.<br>
+    <strong>Whoops! </strong> check for errors!<br>
     <ul>
       @foreach ($errors as $error)
       <?php var_dump("<li>{{$error}}</li>") ?>

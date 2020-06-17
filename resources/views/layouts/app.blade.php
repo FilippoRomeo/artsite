@@ -104,14 +104,12 @@
                                 </svg>
                             </a>
 
-
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
                                     <b>Home</b>
                                 </a>
-                                <hr>
+                                <!-- <hr>
                                 <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
                                     About
                                 </a>
@@ -136,17 +134,11 @@
                                     Maps
                                 </a>
                                 <hr>
-
                                 <a class="dropdown-item" href="{{ url('/') }}" style="text-align: center;">
                                     FAQ
-                                </a>
-
+                                </a> -->
                             </div>
-
-
-
                         </li>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         </div>
                         </li>
@@ -182,15 +174,15 @@
                                 </svg>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/" style="text-align: center;">
+                                <!-- <a class="dropdown-item" href="/" style="text-align: center;">
                                     Home
                                 </a>
-                                <hr>
+                                <hr> -->
                                 <a class="dropdown-item" href="{{ route('profile.index') }}" style="text-align: center;">
                                     Profile
                                 </a>
                                 <hr>
-                                <a class="dropdown-item" href="{{ route('home') }}" style="text-align: center;">
+                                <a class="dropdown-item" href="/upload" style="text-align: center;">
                                     Upload
                                 </a>
                                 <hr>

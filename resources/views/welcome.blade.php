@@ -36,56 +36,56 @@
     </div>
 
     <div class="row justify-content-center">
-    <span class="col-md-8 glyphicon glyphicon-chevron-down" style="font-size: 100px; text-align: center;" aria-hidden="true">⌄</span>
+        <span class="col-md-8 glyphicon glyphicon-chevron-down" style="font-size: 100px; text-align: center;" aria-hidden="true">⌄</span>
 
-<div class="row justify-content-center">
-    <div class="col-md-6" style="width: 100vh; height: 95vh;">
-        <div class="card">
-            <div class="card-header" style="text-align: center;"><b>Recent makers</b></div>
-            <div class="card-body mx-auto" style="padding: 0">
-                <table class="table table-hover" style="width: 60vh;">
-                    <tr>
-                        <th>Name</th>
-                        <th>From</th>
-                        <th>Period</th>
-                    </tr>
-                    @foreach($udata as $user)
-                    <tr>
-                        <td><a href="profile/{{$user->id}}">
-                                <div>{{$user->name}}</div>
-                            </a>
-                        </td>
-                        <td>{{$user->from}}</td>
-                        <td>{{$user->movement}}</td>
-                    </tr>
-                    @endforeach
-                </table>
+        <div class="row justify-content-center">
+            <div class="col-md-6" style="width: 100vh; height: 95vh;">
+                <div class="card">
+                    <div class="card-header" style="text-align: center;"><b>Recent makers</b></div>
+                    <div class="card-body mx-auto" style="padding: 0">
+                        <table class="table table-hover" style="width: 60vh;">
+                            <tr>
+                                <th>Name</th>
+                                <th>From</th>
+                                <th>Period</th>
+                            </tr>
+                            @foreach($udata as $user)
+                            <tr>
+                                <td><a href="profile/{{$user->id}}">
+                                        <div>{{$user->name}}</div>
+                                    </a>
+                                </td>
+                                <td>{{$user->from}}</td>
+                                <td>{{$user->movement}}</td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="width: 100vh; height: 95vh;">
+                <div class="card">
+                    <div class="card-header" style="text-align: center;"><b>Recent work uploaded</b></div>
+                    <div class="card-body mx-auto" style="padding: 0">
+                        <table class="table table-hover" style="width: 60vh;">
+                            <tr>
+                                <th>Title</th>
+                                <th>Period</th>
+                                <th>Location</th>
+                            </tr>
+                            @foreach ($imageInfo as $data)
+                            <tr>
+                                <td>
+                                    <a href="/images/{{$data->id}}"> {{$data->title}} </a> </td>
+                                <td>{{$data->manufacturing_period}}</td>
+                                <td>{{$data->location}}</td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6" style="width: 100vh; height: 95vh;">
-        <div class="card">
-            <div class="card-header" style="text-align: center;"><b>Recent work uploaded</b></div>
-            <div class="card-body mx-auto" style="padding: 0">
-                <table class="table table-hover" style="width: 60vh;">
-                    <tr>
-                        <th>Title</th>
-                        <th>Period</th>
-                        <th>Location</th>
-                    </tr>
-                    @foreach ($imageInfo as $data)
-                    <tr>
-                        <td>
-                            <a href="/images/{{$data->id}}"> {{$data->title}} </a> </td>
-                        <td>{{$data->manufacturing_period}}</td>
-                        <td>{{$data->location}}</td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
     </div>
 </div>
 @endsection

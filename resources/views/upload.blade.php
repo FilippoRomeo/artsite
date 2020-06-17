@@ -8,21 +8,27 @@
                 <div class="card-header">Upload New File</div>
 
                 <div class="card-body">
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{session('success')}}
+                    </div>
+                    @endif
                     <form action="{{ route('uploadfile') }}" enctype="multipart/form-data" method="post">
                         @csrf
-                        
+
                         <div class="form-group">
                             <input type="file" name="file" id="" multiple accept="image/*" require>
                             <span class="help-block text-danger">{{$errors->first('file')}}</span>
                         </div>
-                        
+
                         <div class="form-group">
-                            <input placeholder="Title" type="text" name="title" id="title" class="form-control" require/>
+                            <input placeholder="Title" type="text" name="title" id="title" class="form-control" require />
                             <span class="help-block text-danger">{{$errors->first('title')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Created by" type="text" name="created_by" id="created_by" class="form-control" require/>
+                            <input placeholder="Created by" type="text" name="created_by" id="created_by" class="form-control" require />
                             <span class="help-block text-danger">{{$errors->first('created_by')}}</span>
                         </div>
 
@@ -32,17 +38,17 @@
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Period" type="text" name="manufacturing_period" id="manufacturing_period" class="form-control" require/>
+                            <input placeholder="Period" type="text" name="manufacturing_period" id="manufacturing_period" class="form-control" require />
                             <span class="help-block text-danger">{{$errors->first('manufacturing_period')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Location" type="text" name="location" id="location" class="form-control" require/>
+                            <input placeholder="Location" type="text" name="location" id="location" class="form-control" require />
                             <span class="help-block text-danger">{{$errors->first('location')}}</span>
                         </div>
 
                         <div class="form-group">
-                            <input placeholder="Craft type" type="text" name="manufacturing_type" id="manufacturing_type" class="form-control" require/>
+                            <input placeholder="Craft type" type="text" name="manufacturing_type" id="manufacturing_type" class="form-control" require />
                             <span class="help-block text-danger">{{$errors->first('manufacturing_type')}}</span>
                         </div>
 
@@ -56,12 +62,7 @@
                 </form>
             </div>
         </div>
-        @if (session('success'))
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{session('success')}}
-        </div>
-        @endif
+
     </div>
 </div>
 </div>

@@ -34,14 +34,13 @@
         <input class="form-control" id="movement" placeholder="What is the movement that you work on?" name="movement" />
       </div>
       <div class="col-md-12">
-        <strong>Started activity in: </strong>
-        <input class="form-control" id="active_period" placeholder="Started activity in?" name="active_period" />
+        <strong>When did you start? </strong>
+        <input class="form-control" id="active_period" placeholder="Since?" name="active_period" />
       </div>
       <div class="col-md-12">
         <strong>Bio: </strong>
         <input class="form-control" id="bio" placeholder="Bio" name="bio" />
       </div>
-
 
       <div class="col-md-12">
         <a href="{{route('profile.index')}}" class="btn btn-sm btn-success">Back</a>
