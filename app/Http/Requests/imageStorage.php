@@ -25,7 +25,7 @@ class imageStorage extends FormRequest
     {
         return [
             'title' => 'required|max:100',
-            'file' => 'required|image',
+            'file' => 'required|image|max:5000',
             'created_by' => 'required|max:250',
             'description' => 'required|max:500',
             'location' => 'required|max:250',

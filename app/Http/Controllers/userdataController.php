@@ -16,7 +16,11 @@ class userdataController extends Controller
      */
     public function index()
     {
-        return view('profile.index');
+        if (!auth()->user()) {
+            return view('auth/login')->with('message', 'Please log in first.');
+        } else {
+            return view('profile.index');
+        }
     }
 
     /**
@@ -26,7 +30,11 @@ class userdataController extends Controller
      */
     public function create()
     {
-        return view('profile.create');
+        if (!auth()->user()) {
+            return view('auth/login')->with('message', 'Please log in first.');
+        } else {
+            return view('profile.create');
+        }
     }
 
     /**
@@ -84,15 +92,6 @@ class userdataController extends Controller
 
         var_dump($udata->user_id, $udata->user_id === Auth::id(), Auth::id(), 'userDataController, handle permission');
 
-        // if (!$udata) {
-        //     return redirect()->route('profile.index')
-        //         ->with('success', 'Yea updated successfully');
-        // } elseif() {
-        //     return view('profile.edit', compact('udata'));
-        // }else{
-
-        // }
-
         if (!$udata) {
             return redirect()->route('profile.index')
                 ->with('success', 'Yea updated successfully');
@@ -117,7 +116,6 @@ class userdataController extends Controller
             'active_period' => 'required',
             'bio' => 'required',
         ]);
-        
 
         $udata = UserData::find($id);
         $udata->name = $request->input('name');

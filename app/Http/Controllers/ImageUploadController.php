@@ -22,14 +22,16 @@ class ImageUploadController extends Controller
         if (!auth()->user()) {
             return view('auth/login')->with('message', 'Please log in first.');
         } else {
+
+
             $path = Storage::disk('s3')->put('images/upload', $request->file);
             $request->merge([
                 'size' => $request->file->getSize(),
                 'path' => $path
             ]);
+
             $this->image->create(
                 $request->only(
-                    'size',
                     'title',
                     'path',
                     'created_by',
@@ -43,12 +45,11 @@ class ImageUploadController extends Controller
                 )
             );
             return redirect()->route('profile.index')
-            ->with('success', 'Image Successfully Saved');
+                ->with('success', 'Image Successfully Saved');
         }
     }
 
     //welcome page 
-
     public function welcomePage()
     {
         $image = Storage::disk('s3')->allFiles('images');
@@ -60,9 +61,9 @@ class ImageUploadController extends Controller
         return view('welcome', compact('imageInfo', 'image', 'udata'));
     }
 
+    //view single image
     public function getImage($id)
     {
-
         $image = DB::table('craft_work_pics')
             ->where('id', $id)
             ->get();
@@ -76,7 +77,6 @@ class ImageUploadController extends Controller
 
     public function deleteImage($id)
     {
-
         $image = DB::table('craft_work_pics')
             ->where('id', $id)
             ->get();
