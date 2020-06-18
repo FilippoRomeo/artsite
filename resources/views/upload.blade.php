@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="form-group">
-                            <textarea placeholder="Description" name="description" id="description" class="form-control" require></textarea>
+                            <textarea placeholder="Description" name="description" id="description" class="form-control" rows="4" cols="150" require></textarea>
                             <span class="help-block text-danger">{{$errors->first('description')}}</span>
                         </div>
 

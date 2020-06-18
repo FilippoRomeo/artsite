@@ -18,7 +18,7 @@ class CreateCraftWorkPicsTable extends Migration
             
             $table->string('title');
             $table->string('created_by');
-            $table->text('description');
+            $table->longText('description');
             $table->string('location');
             $table->string('manufacturing_period');
             $table->string('manufacturing_type');

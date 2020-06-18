@@ -39,11 +39,11 @@
       </div>
       <div class="col-md-12">
         <strong>Bio: </strong>
-        <input class="form-control" id="bio" placeholder="Bio" name="bio" />
+        <textarea id="bio" placeholder="Bio" name="bio" class="form-control" rows="4" cols="150" require></textarea>
       </div>
 
       <div class="col-md-12">
-        <a href="{{route('profile.index')}}" class="btn btn-sm btn-success">Back</a>
+        <a href="{{ url()->previous() }}" class="btn btn-sm btn-success">Back</a>
         <button type="submit" class="btn btn-sm btn-primary">Submit</button>
       </div>
     </div>

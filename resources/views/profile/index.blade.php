@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+
 <style>
     div.imagetiles div.col-lg-3.col-md-3.col-sm-3.col-xs-6 {
         padding: 0px !important;
@@ -23,10 +24,33 @@
     }
 </style>
 
+
+
 <div class="container">
     <div class="container">
         <div class="row text-center">
             <div class="col-3">
+
+            @if (\Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+
+                {!! \Session::get('error') !!}
+            </div>
+            @endif
+            @if (\Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+
+                {!! \Session::get('success') !!}
+            </div>
+            @endif
 
                 <div class="col-sm-12">
                     <a href="/" class="btn btn-sm btn-primary inline-block">Home</a>
@@ -68,6 +92,17 @@
             </div>
 
             <div class="col-9 text-center">
+                @if (!empty($message))
+                <div class="alert alert-info">
+
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+
+                    {{ $message }}
+                </div>
+                @endif
                 <div class="card card-block d-flex">
 
                     <div class="card-header">
@@ -78,6 +113,11 @@
 
                         <div class="container">
                             <div class="row imagetiles align-items-center">
+                                @if(!isset(auth()->user()->images[0]))
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6" style="margin: auto; margin-top:3%;">
+                                    <h4>Sorry no images</h4>
+                                </div>
+                                @endif
                                 @foreach(auth()->user()->images as $image)
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6" style="margin: auto; margin-top:3%;">
                                     <a href="/images/{{$image->id}}"> <img src={{$image->url}} class="img-responsive" style="width: 100%;">

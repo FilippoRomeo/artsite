@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\craftWorkPic;
+use App\UserData;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\imageStorage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -22,8 +24,6 @@ class ImageUploadController extends Controller
         if (!auth()->user()) {
             return view('auth/login')->with('message', 'Please log in first.');
         } else {
-
-
             $path = Storage::disk('s3')->put('images/upload', $request->file);
             $request->merge([
                 'size' => $request->file->getSize(),
@@ -64,38 +64,75 @@ class ImageUploadController extends Controller
     //view single image
     public function getImage($id)
     {
+
         $image = DB::table('craft_work_pics')
             ->where('id', $id)
             ->get();
-
-        $user = DB::table('user_data')
-            ->where('user_id', $image[0]->added_by)
-            ->get();
-
-        return view('viewImage', compact('image', 'user'));
+        if (empty($image[0])) {
+            return redirect()->route('images')->with('error', "Sorry, that image does not exist");
+        } else {
+            $user = DB::table('user_data')
+                ->where('user_id', $image[0]->added_by)
+                ->get();
+            return view('viewImage', compact('image', 'user'));
+        }
     }
 
     public function deleteImage($id)
     {
-        $image = DB::table('craft_work_pics')
+        $userdataId = DB::table('craft_work_pics')
             ->where('id', $id)
             ->get();
 
-        Storage::disk('s3')->delete($image[0]->path);
-        DB::table('craft_work_pics')
-            ->where('id', $id)->delete();
+        $currentUser = DB::table('users')
+            ->where('id', Auth::id())
+            ->get();
 
-        return redirect()->route('profile.index')
-            ->with('success', 'The record was deleted successfully');
+        //if the user is not authenticate 
+        if (!auth()->user()) {
+            return view('auth/login')->with('message', 'Please log in first.');
+        }
+        //if the user has the same id
+        elseif ($userdataId[0]->added_by == Auth::id()) {
+            $image = DB::table('craft_work_pics')
+                ->where('id', $id)
+                ->get();
+
+            Storage::disk('s3')->delete($image[0]->path);
+            DB::table('craft_work_pics')
+                ->where('id', $id)->delete();
+
+            return redirect()->route('profile.index')
+                ->with('success', 'The record was deleted successfully');
+        }
+        //if the user is the admin
+        elseif ($currentUser[0]->user_type == 'admin') {
+
+            $image = DB::table('craft_work_pics')
+                ->where('id', $id)
+                ->get();
+
+            Storage::disk('s3')->delete($image[0]->path);
+            DB::table('craft_work_pics')
+                ->where('id', $id)->delete();
+
+            return redirect()->route('images')
+                ->with('success', 'The record was deleted successfully');
+        }
+        //if the user is authenticate but do not own the post redirect to homepage(images) with error
+        else {
+            return redirect()->route('images')
+                ->with('error', "No, you can't delete someone else data");
+        }
     }
 
-
+    //formUpload works but easy hack
     public function formUpload()
     {
         if (!auth()->user()) {
             return view('auth/login')->with('message', 'Please log in first.');
         } else {
-        return view('upload');
+            return view('upload');
         }
     }
 }

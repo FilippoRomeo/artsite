@@ -3,14 +3,38 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
         <div class="col-md-8" style="width: 100%; height: 70vh;">
+
+
+        @if (\Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+
+                {!! \Session::get('error') !!}
+            </div>
+            @endif
+            @if (\Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+
+                {!! \Session::get('success') !!}
+            </div>
+            @endif
+
             <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    @if($image)
+                    @if(!empty($image[0]))
                     <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-               
+
                     <li data-target="#carouselIndicators" data-slide-to="1"></li>
-                   
+
                     <li data-target="#carouselIndicators" data-slide-to="2"></li>
                     @endif
                 </ol>
@@ -58,6 +82,7 @@
                                 <th>From</th>
                                 <th>Period</th>
                             </tr>
+
                             @foreach($udata as $user)
                             <tr>
                                 <td><a href="profile/{{$user->id}}">

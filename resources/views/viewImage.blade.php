@@ -30,10 +30,23 @@
 
                         {{$image->description }}
                     </div>
-                    
+
                 </div>
-                <button style="margin-top: 5%;" class="btn btn-sm btn-danger inline-block" data-target="#delete" data-toggle="modal">Delete Image</button>
                 
+                <?php
+                if (auth()->user()) {
+                    $user = auth()->user();
+                    $imageId = $image->added_by;
+                    $uid = $user->id;
+                } else {
+                    $imageId = null;
+                    $uid = null;
+                }
+                ?>
+
+                @if(Gate::check('isAdmin') || Gate::check('update-post', $imageId, $uid))
+                <button style="margin-top: 5%;" class="btn btn-sm btn-danger inline-block" data-target="#delete" data-toggle="modal">Delete Image</button>
+                @endif
             </div>
             <div class="col-9 text-center">
                 <div class="card card-block d-flex">
@@ -47,7 +60,7 @@
                 </div>
             </div>
 
-           
+
             @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Whoops! </strong> there where some problems with your input.<br>
@@ -60,8 +73,9 @@
                 </ol>
             </div>
             @endif
-
-            @if(count(auth()->user()->userData))
+            
+            
+            @if(Gate::check('isAdmin') || Gate::check('update-post', $imageId, $uid))
             <div class="modal modal-danger fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModellabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -74,7 +88,7 @@
                             </button>
                         </div>
                         <div class="model-body">
-                            <form action="/images/{{$image->id, url($image->path)}}"  method="post">
+                            <form action="/images/{{$image->id, url($image->path)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-body">
@@ -100,6 +114,7 @@
                 });
             </script>
             @endif
+           
 
         </div>
     </div>

@@ -19,7 +19,7 @@ class CreateUserDataTable extends Migration
             $table->string('from');
             $table->text('movement');
             $table->text('active_period');
-            $table->text('bio');
+            $table->longText('bio');
             $table->text('user_id');
             $table->timestamps();
         });
