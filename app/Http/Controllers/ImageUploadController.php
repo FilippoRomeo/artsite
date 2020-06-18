@@ -92,6 +92,10 @@ class ImageUploadController extends Controller
 
     public function formUpload()
     {
+        if (!auth()->user()) {
+            return view('auth/login')->with('message', 'Please log in first.');
+        } else {
         return view('upload');
+        }
     }
 }
