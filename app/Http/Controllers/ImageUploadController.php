@@ -17,7 +17,7 @@ class ImageUploadController extends Controller
         $this->image = $image;
     }
 
-    public function postUpload(imageStorage $request)
+    public function uploadImage(imageStorage $request)
     {
         if (!auth()->user()) {
             return view('auth/login')->with('message', 'Please log in first.');
@@ -42,13 +42,14 @@ class ImageUploadController extends Controller
                     'manufacturing_date'
                 )
             );
-            return back()->with('success', 'Image Successfully Saved');
+            return redirect()->route('profile.index')
+            ->with('success', 'Image Successfully Saved');
         }
     }
 
     //welcome page 
 
-    public function getImages()
+    public function welcomePage()
     {
         $image = Storage::disk('s3')->allFiles('images');
         $udata = DB::table('user_data')
@@ -58,18 +59,6 @@ class ImageUploadController extends Controller
 
         return view('welcome', compact('imageInfo', 'image', 'udata'));
     }
-
-    // public function getMyImages()
-    // {
-    //     //check if user is logged in 
-    //     if (!auth()->user()) {
-    //         return view('auth/login')->with('message', 'Please log in first.');
-    //     } else {
-    //         return view('images')->with('images', auth()->user()->images);
-    //     }
-    // }
-
-    //View single image
 
     public function getImage($id)
     {
@@ -83,12 +72,26 @@ class ImageUploadController extends Controller
             ->get();
 
         return view('viewImage', compact('image', 'user'));
-    
+    }
+
+    public function deleteImage($id)
+    {
+
+        $image = DB::table('craft_work_pics')
+            ->where('id', $id)
+            ->get();
+
+        Storage::disk('s3')->delete($image[0]->path);
+        DB::table('craft_work_pics')
+            ->where('id', $id)->delete();
+
+        return redirect()->route('profile.index')
+            ->with('success', 'The record was deleted successfully');
     }
 
 
-    public function formUpload() {
+    public function formUpload()
+    {
         return view('upload');
     }
-
 }

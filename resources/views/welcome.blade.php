@@ -3,24 +3,33 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-
         <div class="col-md-8" style="width: 100%; height: 70vh;">
             <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
+                    @if($image)
                     <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+               
                     <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                   
                     <li data-target="#carouselIndicators" data-slide-to="2"></li>
+                    @endif
                 </ol>
                 <div class="carousel-inner">
+                    @if(isset($image[0]))
                     <div class="carousel-item active">
                         <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($image[0])}}" alt="First slide">
                     </div>
+                    @endif
+                    @if(isset($image[1]))
                     <div class="carousel-item">
                         <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($image[1])}}" alt="Second slide">
                     </div>
+                    @endif
+                    @if(isset($image[2]))
                     <div class="carousel-item">
                         <img class="d-block w-50 mx-auto" src="{{Storage::disk('s3')->url($image[2])}}" alt="Third slide">
                     </div>
+                    @endif
                 </div>
                 <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -32,7 +41,7 @@
                 </a>
             </div>
         </div>
-        
+
     </div>
 
     <div class="row justify-content-center">
