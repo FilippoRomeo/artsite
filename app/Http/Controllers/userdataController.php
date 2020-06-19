@@ -112,7 +112,7 @@ class userdataController extends Controller
         }
    
         // if the user does not own the page OR if the user is not authenticated
-           $udata = UserData::find($id);
+        $udata = UserData::find($id);
         // retrieve the data from the auth user
         $images = DB::table('craft_work_pics') 
                -> where('added_by', $udata->user_id) 
@@ -243,7 +243,7 @@ class userdataController extends Controller
         } //if the user is the admin
         elseif ($currentUser[0]->user_type == 'admin') {
             $udata->delete();
-            return redirect()->route('profile.show', $id)
+            return redirect()->route('profile.index', $id)
                 ->with('success', 'The record was deleted successfully');
         }
         // if the user is authenticate but do not own the post redirect to 
